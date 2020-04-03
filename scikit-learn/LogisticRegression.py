@@ -36,3 +36,16 @@ print("直接比对真实值和预测值：\n",y_test==y_predict)
 score= estimator.score(x_test,y_test)
 print("准确率:\n",score)
 
+#精准率和召回率计算
+from sklearn.metrics import classification_report
+report = classification_report(y_test,y_predict,labels=[2,4],target_names=["良性","恶行"])
+print(report)
+
+#ROC曲线，AUC 面积
+from sklearn.metrics import roc_auc_score
+# y_true ：每个样本的真实类别，必须是0（反例），1（正例）
+#将t_test 转换成0 1 
+y_true= np.where(y_test > 3, 1,0)
+auc = roc_auc_score(y_true, y_predict)
+print(auc)
+
