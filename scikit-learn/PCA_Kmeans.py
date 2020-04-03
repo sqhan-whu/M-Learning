@@ -21,3 +21,12 @@ transfer = PCA(n_components=0.95)
 data_new = transfer.fit_transform(data)
 
 print(data_new.shape)
+
+
+##KMeans 聚类
+from sklearn.cluster import KMeans
+estimator = KMeans(n_clusters=3)
+estimator.fit(data_new)
+y_predict = estimator.predict(data_new)
+from sklearn.metrics import silhouette_score
+silhouette_score(data_new,y_predict)
